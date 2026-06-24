@@ -18,7 +18,9 @@ Amaç, geliştiricilerin daha temiz, esnek, sürdürülebilir ve bakımı kolay 
 📊 Pattern Dağılımı
 
 <h1>1- CREATIONAL DESIGN PATTERNS</h1>
-. Factory Method <br/>
+- ## Creational Design Patterns
+
+. [Factory Method](https://github.com/busraydinn/DesignPatterns/blob/main/CreationalDesignPatterns/FactoryMethod.md)<br/>
 . Abstract Factory <br/>
 . Builder <br/>
 . Prototype <br/>
