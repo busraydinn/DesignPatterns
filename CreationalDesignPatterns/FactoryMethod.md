@@ -88,3 +88,103 @@ class Program
 <h2>Çıktı</h2>
 <img width="388" height="71" alt="image" src="https://github.com/user-attachments/assets/a60dc569-c133-4940-85ba-6cc323473c95" />
 
+<h1>Örnek-2 </h1>
+<img width="830" height="780" alt="image" src="https://github.com/user-attachments/assets/33c40383-605a-4b28-ad1d-5435f2f6ea2e" />
+
+## 💻 Örnek Kod (C#)
+
+```csharp
+//1. Adım Sözleşme
+public interface IEnemies
+{
+    string Name { get; }
+    int Health { get; }
+    void Attack();
+}
+public class Goblin : IEnemies
+{
+    public string Name { get; private set; }
+    public int Health { get; private set; }
+    public Goblin()
+    {
+        Name = "Goblin";
+        Health = 50;
+    }
+    public void Attack()
+    {
+        Console.WriteLine($"{Name} , Can: {Health}");
+    }
+   
+}
+public class Dragon : IEnemies
+{
+    public string Name { get; private set; }
+    public int Health { get; private set; }
+    public Dragon()
+    {
+        Name = "Dragon";
+        Health = 150;
+    }
+    public void Attack()
+    {
+        Console.WriteLine($"{Name} ateş püskürttü , kalan can : {Health}");
+    }
+}
+public class Orc : IEnemies
+{
+    public string Name { get; private set; }
+    public int Health { get; private set; }
+    public Orc()
+    {
+        Name = "Orc";
+        Health = 400;
+    }
+    public void Attack()
+    {
+        Console.WriteLine($"{Name} , Can : {Health}");
+    }
+}
+// Ana soyut fabrika şeması
+public abstract class EnemyFactory
+{
+    // Bu metot çağrıldığında geriye kurallara uyan (IEnemies) bir düşman dönecek
+    public abstract IEnemies CreateEnemy();
+}
+
+// Goblin Üreten Fabrika
+public class GoblinFactory : EnemyFactory
+{
+    public override IEnemies CreateEnemy() => new Goblin();
+}
+
+// Orc Üreten Fabrika
+public class OrcFactory : EnemyFactory
+{
+    public override IEnemies CreateEnemy() => new Orc();
+}
+
+// Dragon Üreten Fabrika
+public class DragonFactory : EnemyFactory
+{
+    public override IEnemies CreateEnemy() => new Dragon();
+}
+
+class Program
+{
+    public static void Main()
+    {
+        EnemyFactory fabrika = new DragonFactory(); // Boss odasına geldik!
+
+        // Fabrikayı çalıştırıyoruz. Arka planda 'new Dragon()' dönüyor 
+        // ama Main metodu bunu görmüyor, sadece 'IEnemies' tipinde bir düşman alıyor.
+        IEnemies canavar = fabrika.CreateEnemy();
+
+        // Düşman kimse ona göre saldırıyor
+        canavar.Attack(); // Çıktı: Dragon ateş püskürttü!
+
+
+    }
+}
+```
+## Çıktı
+<img width="381" height="73" alt="image" src="https://github.com/user-attachments/assets/6092a9c5-26eb-42c0-8dec-16ef2a854f91" />
